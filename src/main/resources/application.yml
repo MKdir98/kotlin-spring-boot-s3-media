@@ -1,0 +1,58 @@
+springdoc:
+  api-docs:
+    path: /docs/api
+  swagger-ui:
+    disable-swagger-default-url: true
+    url: /docs/api
+    path: /docs/api/index.html
+  description: نسخه آزمایشی
+  version: 0.0.1
+spring:
+  profiles:
+    active: prod
+  application:
+    name: auction
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://127.0.0.1:5432/media
+    username: 
+    password: 
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: false
+        use_sql_comments: false
+        format_sql: false
+        check_nullability: true
+        validator:
+          apply_to_ddl: false
+        # todo decision related to the production version of postgres see https://docs.jboss.org/hibernate/orm/5.0/javadocs/org/hibernate/dialect/package-summary.html
+        dialect: org.hibernate.dialect.PostgreSQL94Dialect
+  sql:
+    init:
+      continue-on-error: true
+  redis:
+    timeout: 1s
+  cache:
+    type: redis
+    redis:
+      cache-null-values: false
+      time-to-live: 6000000
+      use-key-prefix: true
+
+server:
+  port: 8080
+  error:
+    include-message: always
+    include-binding-errors: always
+    include-exception: true
+    include-stacktrace: always
+
+arvan:
+  bucket: 
+  access-key: ""
+  secret-key: ""
+  url: "https://s3.ir-thr-at1.arvanstorage.ir"
+  sign-region: ""
